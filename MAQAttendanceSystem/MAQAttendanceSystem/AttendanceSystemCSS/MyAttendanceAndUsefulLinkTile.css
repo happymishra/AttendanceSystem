@@ -1,0 +1,126 @@
+﻿.tileHeading {
+ font-size:13Px;
+ padding-right: 5px;
+ font-weight: bold;
+}
+
+.wholeTile {
+background: #00198f;
+padding: 5px 10px 10px;
+height: 135px;
+width: 276px;
+color: white;
+font-size:13px;
+}
+.my-attendance {
+    display:inline;
+    width:52%;
+    float: right;
+    height:135px;
+    
+}
+.useful-links {
+display:inline;
+width:45%;
+float:left
+
+}
+
+.tileRow {
+font-family: Segoe UI;
+color: #ffffff
+}
+
+.useful-links span a:hover {
+color: yellow;
+
+}
+.useful-links span {
+display: block;
+padding-top: 3px
+}
+a {
+ text-decoration:none;
+ color: white
+}
+a:visited {
+    color:#ec6748;
+    }
+
+.wholeTile .tileHeading {
+
+padding-bottom:5px;
+padding-top: 2px
+}
+
+.divider{
+    width: 1px;
+    height:120px;
+    background-color:#fff;
+    float:left;
+    margin-top:10px;
+    margin-bottom: 30px;
+    margin-left: 1px;
+    opacity:0.5;
+    margin-right:1px;
+}
+.space {
+    width:20px;
+
+}
+.monthname {
+   margin-top:5px;
+    width:150px;
+    height:19px;
+}
+.calendarview {
+margin-top:4%;
+}
+
+#pop {
+width:100%;
+height:100%;
+opacity:1;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#313131;
+overflow:auto
+}
+
+.calendarview p:hover {
+color: yellow;
+cursor: pointer;
+}
+
+#cancelbutton {
+position:absolute;
+top:5px;
+right:5px;
+cursor:pointer;
+}
+ #leftarrow, #rightarrow{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+
+}
+
+.monthname span {
+
+width:60px;
+float:right;
+}
+
+#InOutTime div span {
+Width:56px;
+float:right;
+margin-right:5px
+
+}
+
+#InOutTime {
+width:150px;
+margin-top:10px;
+}

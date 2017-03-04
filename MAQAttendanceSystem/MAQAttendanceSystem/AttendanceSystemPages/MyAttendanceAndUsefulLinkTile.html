@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        MAQSoftware
+    </title>
+    <link rel=" stylesheet" href="../SiteAssets/AttendanceSystemCSS/MyAttendanceAndUsefulLinkTile.css">
+    <link rel=" stylesheet" href="../SiteAssets/AttendanceSystemCSS/Calendar.css">
+    <link rel=" stylesheet" href="../SiteAssets/AttendanceSystemCSS/IssueForm.css">
+    <script src="../SiteAssets/AttendanceSystemJavaScript/Calendar.js"> </script>
+    <script src="../SiteAssets/AttendanceSystemJavaScript/form.js"></script>
+    <script src="../SiteAssets/AttendanceSystemJavaScript/CalendarView.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body onload="GetDates()">
+    <div class="tileRow">
+        <div class="wholeTile">
+
+
+            <div class="useful-links">
+                <div class="tileHeading">
+                    Useful Link
+                </div>
+                <span>
+                    <a href="#">Log IT Ticket</a>
+                    <span>
+                        <a href="#" id="One-on-One Report">One-on-One Report</a>
+                        <span>
+                            <a href="#">Apply for Leave</a>
+                            <span>
+                                <a href="#" id="Get Certification voucher" title="Get Certification voucher">Get Certificati...</a>
+                                <span>
+                                    <a href="#" id="Approach Document">Approach Document</a>
+                                </span>
+                            </span>
+                        </span>
+
+                    </span>
+                </span>
+            </div>
+            <div class="divider">
+            </div>
+
+            <div class="my-attendance">
+                <div class="tileHeading" id="myattendanceheader">
+                    My Attendance
+                </div>
+                <div class="monthname">
+                    <span id="currentmonth">
+
+                    </span>
+                    <span id="previousmonth">
+
+                    </span>
+                </div>
+                <div id="InOutTime">
+                    <div id="intimehome">
+                        IN
+                        <span>
+                            20:35 AM
+                        </span>
+                        <span>
+                            20:35 PM
+                        </span>
+                    </div>
+                    <div id="outtimehome">
+                        OUT
+                        <span>
+                            20:35 AM
+                        </span>
+                        <span>
+                            20:35 PM
+                        </span>
+                    </div>
+                </div>
+                <div id="pop">
+                    <div id="calendar-container">
+                        <div id="header">
+                            <div id="calendarviewheading">
+                                Calendar View
+                            </div>
+                            <div id="calendar-header">
+                                <span>
+                                    <img src="../SiteAssets/AttendanceSystemResources/left arrow.png" width="15" height="15" id="leftarrow" onclick="arrowClicked(this.id) " />
+                                </span>
+                                <span id="calendar-month-year"></span>
+                                <span>
+                                    <img src="../SiteAssets/AttendanceSystemResources/right arrow.png" width="15" height="15" id="rightarrow" onclick="arrowClicked(this.id)" />
+                                </span>
+                            </div>
+                            <div id="cancelbutton">
+                                <img src="../SiteAssets/AttendanceSystemResources/cancelbutton.png" width="15" height="15" onclick="hideCalendarPopup()" />
+                            </div>
+                        </div>
+                        <div id="calendar-dates">
+                        </div>
+                    </div>
+                </div>
+                <div class="calendarview">
+                    <p onclick="showCalendarPopup()">Calendar View</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ssue-form">
+        <script>
+            issueFormLoad();
+        </script>
+    </div>
+</body>
+</html>

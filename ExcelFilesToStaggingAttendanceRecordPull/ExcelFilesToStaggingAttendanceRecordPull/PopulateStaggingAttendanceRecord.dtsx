@@ -1,0 +1,1450 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/28/2015 3:50:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HAPPY"
+  DTS:CreatorName="Happy\Happy"
+  DTS:DTSID="{D375BFE7-A5BE-479D-ADFA-222778188BEE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="PopulateStaggingAttendanceRecord"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{37515914-65AA-49AD-BCC1-BA1AB0E6A041}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{38E2BC5A-4D6D-4414-8DA6-C9A8A6FA1602}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::FolderPath] + "\\" + (DT_WSTR, 20) @[User::Date] + ".xls"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=F:\MAQAttendanceSystem\ExcelFiles\20150914.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HAPPY\SQLEXPRESS.MAQAttendanceSystem]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{83D4E911-37CA-407C-B0BF-FA28A80B2D3B}"
+      DTS:ObjectName="HAPPY\SQLEXPRESS.MAQAttendanceSystem">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HAPPY\SQLEXPRESS;Initial Catalog=MAQAttendanceSystem;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0F70B924-0F17-4F95-AF81-9506F9F472A9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="3">20150914</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EA05F9BD-B111-48F9-BDCB-C714898B1AED}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateResultSet">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0A68AFEA-D78C-49B0-9A64-5181637BA2A6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF2E51F9-F715-4D9F-8596-E1505704B59E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderPath">
+      <DTS:VariableValue
+        DTS:DataType="8">F:\MAQAttendanceSystem\ExcelFiles</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{689DA601-922B-46D9-8C87-BAB8FCA80E34}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Populate StaggingAttendanceRecord table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:DelayValidation="True"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{DE80B495-48AA-4859-AE2B-21EFEBBC02ED}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FELC - Iterate Excel file names">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachFileEnumerator"
+            DTS:DTSID="{A2C6A2C1-8E11-4132-AE28-432EBB87377E}"
+            DTS:ObjectName="{A2C6A2C1-8E11-4132-AE28-432EBB87377E}">
+            <DTS:PropertyExpression
+              DTS:Name="Directory">@[User::FolderPath]</DTS:PropertyExpression>
+            <DTS:ObjectData>
+              <ForEachFileEnumeratorProperties>
+                <FEFEProperty
+                  Folder="F:\MAQAttendanceSystem\ExcelFiles" />
+                <FEFEProperty
+                  FileSpec="*.xls*" />
+                <FEFEProperty
+                  FileNameRetrievalType="2" />
+                <FEFEProperty
+                  Recurse="-1" />
+              </ForEachFileEnumeratorProperties>
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names\SQL - Insert into ExcelFileName table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:DelayValidation="True"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0F52491D-4E10-4DB6-86E8-47F35B61E4D8}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL - Insert into ExcelFileName table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{83D4E911-37CA-407C-B0BF-FA28A80B2D3B}"
+                  SQLTask:SqlStatementSource="DECLARE @DateString VARCHAR(20)&#xA;SET @DateString = ?&#xA;DECLARE @Date  INT&#xA;SET @Date = CONVERT(INT, @DateString)&#xA;&#xA;INSERT INTO [dbo].[ExcelFileName]&#xA;VALUES(@Date)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::FileName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{F156C483-02AC-41C2-BA9E-FFC08D36C562}"
+              DTS:ObjectName="{F156C483-02AC-41C2-BA9E-FFC08D36C562}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::FileName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{7C3E7B6C-F2F0-42C6-AF64-7A2CDBC9CFE6}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:ForceExecValue="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FELC - Populate StagingAttendanceRecord table">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{61B48316-5B0A-4B2D-985D-F08F49180429}"
+            DTS:ObjectName="{61B48316-5B0A-4B2D-985D-F08F49180429}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::DateResultSet" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:DelayValidation="True"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{B013D89A-79B6-49F2-958E-9CC73C2312A3}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT - ExcelToStagingAttendanceRecord table"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes"
+                      componentClassID="Microsoft.DataConvert"
+                      contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      name="DCNV - Convert Excel data types to database datatypes"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input]"
+                          name="Data Conversion Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[Datekey]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Datekey"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Datekey]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[EmployeeID ]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="EmployeeID "
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[EmployeeName ]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="EmployeeName "
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[InTime]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="InTime"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[OutTime]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="OutTime"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[Status]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Status"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input].Columns[PunchRecords]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="PunchRecords"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output]"
+                          exclusionGroup="1"
+                          name="Data Conversion Output"
+                          synchronousInputId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTDatekey]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTDatekey]"
+                              name="INTDatekey"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Datekey]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTEmployeeID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTEmployeeID]"
+                              name="INTEmployeeID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHAREmployeeName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              length="200"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHAREmployeeName]"
+                              name="NVARCHAREmployeeName"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEInTime]"
+                              dataType="dbTime2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEInTime]"
+                              name="TIMEInTime"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEOutTime]"
+                              dataType="dbTime2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEOutTime]"
+                              name="TIMEOutTime"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARStatus]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              length="20"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARStatus]"
+                              name="NVARCHARStatus"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARPunchRecords]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              length="100"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARPunchRecords]"
+                              name="NVARCHARPunchRecords"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Data Conversion Error Output"
+                          synchronousInputId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                      name="Derived Column"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input]"
+                          description="Input to the Derived Column Transformation"
+                          name="Derived Column Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[Datekey]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Datekey"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Datekey]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">@[User::Date]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[User::Date]</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[EmployeeID ]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="EmployeeID "
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">[EmployeeID ]</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[EmployeeName ]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="EmployeeName "
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">[EmployeeName ]</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[InTime]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="InTime"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">InTime</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[OutTime]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="OutTime"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">OutTime</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[Status]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Status"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">Status</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input].Columns[PunchRecords]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="PunchRecords"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">#{Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">PunchRecords</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Output]"
+                          description="Default Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          name="Derived Column Output"
+                          synchronousInputId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Error Output]"
+                          description="Error Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Derived Column Error Output"
+                          synchronousInputId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records"
+                      componentClassID="Microsoft.ExcelSource"
+                      contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Excel Source"
+                      name="EX_SRC - Attendance records"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">Sheet1$</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The mapping from parameters in the SQL command to variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                          connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output]"
+                          name="Excel Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Datekey]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[Datekey]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Datekey]"
+                              name="Datekey"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[EmployeeID ]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeID ]"
+                              name="EmployeeID "
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[EmployeeName ]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[EmployeeName ]"
+                              name="EmployeeName "
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[InTime]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[InTime]"
+                              name="InTime"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[OutTime]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[OutTime]"
+                              name="OutTime"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[Status]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[Status]"
+                              name="Status"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[PunchRecords]"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].Columns[PunchRecords]"
+                              name="PunchRecords"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[Datekey]"
+                              dataType="date"
+                              name="Datekey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[EmployeeID ]"
+                              dataType="r8"
+                              name="EmployeeID " />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[EmployeeName ]"
+                              dataType="wstr"
+                              length="255"
+                              name="EmployeeName " />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[InTime]"
+                              dataType="date"
+                              name="InTime" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[OutTime]"
+                              dataType="date"
+                              name="OutTime" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[Status]"
+                              dataType="wstr"
+                              length="255"
+                              name="Status" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output].ExternalColumns[PunchRecords]"
+                              dataType="wstr"
+                              length="255"
+                              name="PunchRecords" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output]"
+                          isErrorOut="true"
+                          name="Excel Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[Datekey]"
+                              dataType="date"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[Datekey]"
+                              name="Datekey" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[EmployeeID ]"
+                              dataType="r8"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[EmployeeID ]"
+                              name="EmployeeID " />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[EmployeeName ]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[EmployeeName ]"
+                              name="EmployeeName " />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[InTime]"
+                              dataType="date"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[InTime]"
+                              name="InTime" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[OutTime]"
+                              dataType="date"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[OutTime]"
+                              name="OutTime" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[Status]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[Status]"
+                              name="Status" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[PunchRecords]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[PunchRecords]"
+                              name="PunchRecords" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE_DST - Add data into StagingAttendanceRecord table"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[StagingAttendanceRecord]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[HAPPY\SQLEXPRESS.MAQAttendanceSystem]"
+                          connectionManagerRefId="Package.ConnectionManagers[HAPPY\SQLEXPRESS.MAQAttendanceSystem]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[INTDatekey]"
+                              cachedDataType="i4"
+                              cachedName="INTDatekey"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTDatekey]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[INTEmployeeID]"
+                              cachedDataType="i4"
+                              cachedName="INTEmployeeID"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[INTEmployeeID]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[NVARCHAREmployeeName]"
+                              cachedDataType="wstr"
+                              cachedLength="200"
+                              cachedName="NVARCHAREmployeeName"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHAREmployeeName]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[TIMEInTime]"
+                              cachedDataType="dbTime2"
+                              cachedName="TIMEInTime"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[InTime]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEInTime]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[TIMEOutTime]"
+                              cachedDataType="dbTime2"
+                              cachedName="TIMEOutTime"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[OutTime]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[TIMEOutTime]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[NVARCHARStatus]"
+                              cachedDataType="wstr"
+                              cachedLength="20"
+                              cachedName="NVARCHARStatus"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARStatus]" />
+                            <inputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].Columns[NVARCHARPunchRecords]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="NVARCHARPunchRecords"
+                              externalMetadataColumnId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[PunchRecords]"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output].Columns[NVARCHARPunchRecords]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                              dataType="i4"
+                              name="DateKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                              dataType="i4"
+                              name="EmployeeID" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                              dataType="wstr"
+                              length="200"
+                              name="EmployeeName" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[InTime]"
+                              dataType="dbTime2"
+                              name="InTime"
+                              scale="7" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[OutTime]"
+                              dataType="dbTime2"
+                              name="OutTime"
+                              scale="7" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                              dataType="wstr"
+                              length="20"
+                              name="Status" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input].ExternalColumns[PunchRecords]"
+                              dataType="wstr"
+                              length="100"
+                              name="PunchRecords" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Data Conversion Output]"
+                      endId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table.Inputs[OLE DB Destination Input]"
+                      name="Data Conversion Output"
+                      startId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Outputs[Data Conversion Output]" />
+                    <path
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Derived Column Output]"
+                      endId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes.Inputs[Data Conversion Input]"
+                      name="Derived Column Output"
+                      startId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Outputs[Derived Column Output]" />
+                    <path
+                      refId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Excel Source Output]"
+                      endId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column.Inputs[Derived Column Input]"
+                      name="Excel Source Output"
+                      startId="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records.Outputs[Excel Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{8B178087-DC13-4F8A-B7F9-2FAE5C214EE0}"
+              DTS:ObjectName="{8B178087-DC13-4F8A-B7F9-2FAE5C214EE0}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::Date" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Create ExcelFileName table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A66174C4-9DF7-48BE-A288-051FC7FF9D50}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ExcelFileName table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{83D4E911-37CA-407C-B0BF-FA28A80B2D3B}"
+              SQLTask:SqlStatementSource="IF  EXISTS (SELECT * FROM sys.objects &#xA;WHERE object_id = OBJECT_ID(N'[dbo].[ExcelFileName]') AND type in (N'U'))&#xA;BEGIN&#xA;&#x9;DROP TABLE [dbo].[ExcelFileName]&#xA;END&#xA;CREATE TABLE [dbo].[ExcelFileName]&#xA;(&#xA;&#x9;Date INT&#xA;) &#xA;IF  NOT EXISTS (SELECT * FROM sys.objects &#xA;WHERE object_id = OBJECT_ID(N'[dbo].[StagingAttendanceRecord]') AND type in (N'U'))&#xA;BEGIN&#xA;CREATE TABLE [dbo].[StagingAttendanceRecord]&#xA;(&#xA;&#x9;DateKey INT NOT NULL,&#xA;&#x9;EmployeeID INT NOT NULL,&#xA;&#x9;EmployeeName NVARCHAR(200),&#xA;&#x9;InTime TIME,&#xA;&#x9;OutTime TIME,&#xA;&#x9;Status NVARCHAR(20),&#xA;&#x9;PunchRecords NVARCHAR(100)&#xA;) &#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Missing dates"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0AA8FEA6-1300-4EA9-B665-8B1DEECD24F0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Missing dates"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{83D4E911-37CA-407C-B0BF-FA28A80B2D3B}"
+              SQLTask:SqlStatementSource="SELECT Date &#xA;FROM [dbo].[ExcelFileName] &#xA;WHERE Date NOT IN (&#xA;&#x9;SELECT DISTINCT DateKey&#xA;&#x9;FROM [dbo].[StagingAttendanceRecord]&#xA;)"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::DateResultSet" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Populate DimEmployee tale"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C1FB98C0-B6B6-4D31-B2BC-4C34F8D8A8D7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Populate DimEmployee tale"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{83D4E911-37CA-407C-B0BF-FA28A80B2D3B}"
+              SQLTask:SqlStatementSource="EXEC usp_DimEmployee_Update" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BD71E749-36A8-433D-84C4-A4280D92AF4A}"
+          DTS:From="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Create ExcelFileName table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{FFD4A18F-4AA6-4810-BE5C-DF1602131CE4}"
+          DTS:From="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Missing dates" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{893C3B97-38F1-4F85-9AC9-A5DC0BDBCEB7}"
+          DTS:From="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Missing dates"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{ABF8C175-BC26-47F1-8438-3A759F748914}"
+          DTS:From="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Populate DimEmployee tale" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names\SQL - Insert into ExcelFileName table"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="265,103"
+          Size="265,146"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Iterate Excel file names"
+          TopLeft="24.5,107.5" />
+        <NodeLayout
+          Size="292,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="303,103"
+          Size="303,146"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table"
+          TopLeft="5.50000000000006,415.5" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Create ExcelFileName table"
+          TopLeft="39,5.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Missing dates"
+          TopLeft="71,313.5" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\SQL - Populate DimEmployee tale"
+          TopLeft="38.5000000000001,621.5" />
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint]"
+          TopLeft="157,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="157,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table.PrecedenceConstraints[Constraint 3]"
+          TopLeft="157,561.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="314,719"
+          Size="314,762"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table"
+          TopLeft="5.50000000000009,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="348,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table"
+          TopLeft="5.50000000000006,311.5" />
+        <NodeLayout
+          Size="341,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\DCNV - Convert Excel data types to database datatypes"
+          TopLeft="9.00000000000003,209.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\Derived Column"
+          TopLeft="102.5,107.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records"
+          TopLeft="70.5,5.5" />
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Excel Source Output]"
+          TopLeft="179.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Derived Column Output]"
+          TopLeft="179.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table.Paths[Data Conversion Output]"
+          TopLeft="179.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\OLE_DST - Add data into StagingAttendanceRecord table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC - Populate StaggingAttendanceRecord table\FELC - Populate StagingAttendanceRecord table\DFT - ExcelToStagingAttendanceRecord table\EX_SRC - Attendance records">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

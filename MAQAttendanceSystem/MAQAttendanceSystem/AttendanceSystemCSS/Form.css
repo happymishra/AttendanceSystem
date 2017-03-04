@@ -1,0 +1,72 @@
+﻿#form{
+ width: 540px;
+ height: 540px;
+ border: 1px solid #eee;
+ font-size: 16px;
+ font-family: Arial;
+ background-color:white;
+ color:black;
+ position:fixed;
+ left:30%;
+ top:10%;
+display:none;
+}
+#form div {
+width:90%;
+height:50px;
+margin-left:25px;
+margin-right:25px
+}
+#form #formHeaderID {
+Height:50px;
+margin-top:25px;
+}
+#headerspanID {
+margin-left:0px;
+font-size:20px;
+}
+#cancelspanID {
+    float:right;
+    cursor:pointer;
+}
+#form #commentTextID {
+    height:30px;
+    font-weight:bold;
+}
+#form #commentValueID {
+     height:70px;
+}
+input[type=button] {
+    width: 70px; 
+     height: 30px;
+     float:right;
+     margin-right:20px;
+     margin-top:10px;
+     border-radius:6px;
+     color:red;
+     position:relative;
+    left:-22px;
+     top: -20px;
+     cursor:pointer;
+}
+#attachment {
+    position:relative;
+    left:102px;
+    top: -9px;
+    cursor:pointer;
+}
+#attachmentText {
+    position:relative;
+    left:8px;
+    font-weight:bold;
+    top:24px;
+}
+
+#userNameValueID, #employeeNoValueID, #clickedDateValueID, #inTimeValueID, #outTimeValueID {
+position:absolute;
+left:250px;
+width:200px;
+}
+#userNameTextID, #employeeNoTextID, #clickedDateTextID, #inTimeTextID, #outTimeTextID {
+font-weight:bold;
+}

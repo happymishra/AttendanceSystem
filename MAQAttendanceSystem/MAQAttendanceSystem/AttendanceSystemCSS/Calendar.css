@@ -1,0 +1,112 @@
+﻿body #calendar-container {
+    width: 540px;
+    height: 540px;
+    text-align: center;
+    border: 1px solid #eee;
+    font-size: 16px;
+    font-family: Arial;
+    background-color: white;
+    color: black;
+    position: fixed;
+    left: 30%;
+    top: 10%;
+}
+
+body #calendar-dates {
+    margin-left: 25px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+}
+
+body #calendarviewheading {
+    position: absolute;
+    left: 25px;
+    top: 20px;
+    color: blue;
+}
+
+body #calendar-header {
+    position: absolute;
+    top: 50Px;
+    left: 200px;
+}
+
+body #header {
+    height: 95px;
+    margin: 0px;
+    font-size: 13Px;
+    font-weight: bold;
+    font-family: Segoe UI;
+}
+
+body #daysofweek span {
+    color: white;
+    text-align: center;
+    background-color: blue;
+}
+
+body .completecalendar {
+    width: 100%;
+    height: 100%;
+}
+
+body div.completecalendar div {
+    float: left;
+}
+
+body div.completecalendar div span {
+        width: 65.7px;
+        height: 14px;
+        padding: 1px 1px 1px 1px;
+        border: 1px solid black;
+        text-align: left;
+        font-size: 12px;
+        background-color: lightgrey;
+        float: left;
+    }
+
+body #inandout span {
+    height: 58px;
+    background-color: white;
+}
+
+body .intime {
+    position: relative;
+    top: -29px;
+    vertical-align: top;
+    text-align: left;
+    margin: 1px;
+    padding: 0px;
+    margin-left: 2px;
+}
+
+body .outtime {
+    vertical-align: bottom;
+    text-align: left;
+    margin-top: -7px;
+    margin-left: 2px;
+    padding: 0px;
+}
+
+body .helpbutton {
+    position: relative;
+    top: 15px;
+    padding-top: 0px;
+    padding-left: 20px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#frown-face {
+    position: relative;
+    top: -100px;
+    text-align: left;
+    font-size: 150px;
+}
+
+#text-message {
+    position: relative;
+    top: -200px;
+    text-align: left;
+    font-size: 30px;
+}
